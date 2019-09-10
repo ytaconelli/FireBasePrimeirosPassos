@@ -22,13 +22,18 @@ public class MainActivity extends AppCompatActivity {
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
-    private EditText editTextNome;
+    private EditText editTextValor1;
+    private EditText editTextValor2;
+    private EditText editTextValor3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        editTextNome = findViewById(R.id.edit_text_nome);
+        editTextValor1 = findViewById(R.id.edit_text_valor1);
+        editTextValor2 = findViewById(R.id.edit_text_valor2);
+        editTextValor3 = findViewById(R.id.edit_text_valor3);
+
         conectarBanco();
     }
 
@@ -42,10 +47,27 @@ public class MainActivity extends AppCompatActivity {
         String uiid = UUID.randomUUID().toString();
         databaseReference
                 .child("Dicionario")
-                .child(uiid)
-                .child("Nome")
-                .setValue(editTextNome.getText().toString());
+                .child("Valor1")
+                .setValue(editTextValor1.getText().toString());
+
+        databaseReference
+                .child("Dicionario")
+                .child("Valor2")
+                .setValue(editTextValor2.getText().toString());
+
+        databaseReference
+                .child("Dicionario")
+                .child("Valor3")
+                .setValue(editTextValor3.getText().toString());
     }
+
+    //public void apagarDado(View v){
+   //     databaseReference.child("Dicionario").child("Valor1").removeValue();
+    //    databaseReference.child("Dicionario").child("Valor2").removeValue();
+    //    databaseReference.child("Dicionario").child("Valor3").removeValue();
+   // }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
